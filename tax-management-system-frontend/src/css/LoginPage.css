@@ -1,0 +1,39 @@
+
+.loginpage_h1 {
+    margin-bottom: 20px;
+    color: dimgray;
+}
+.loginpage_h6 {
+    color: red;
+    background-color: white;
+}
+
+.loginpage_input {
+    border: 2px inset #EBE9ED;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    background-color: white;
+}
+.loginpage_form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    top:  40%;
+    left: 50%;
+    width: 40%;
+    transform: translate(-50%,-50%);
+    border: #dbdbdb solid 1px;
+    background-color: white;
+    background-image: none;
+}
+
+.loginpage_button:hover {
+    cursor: pointer;
+    filter: brightness(80%);
+}
+
+.loginpage_button:hover {
+    cursor: pointer;
+    filter: brightness(80%);
+}
