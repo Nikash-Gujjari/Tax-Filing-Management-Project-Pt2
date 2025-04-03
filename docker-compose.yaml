@@ -17,7 +17,7 @@ services:
             - jenkins-data:/var/jenkins_home
             - jenkins-docker-certs:/certs/client:ro
         ports:
-            - 8000:8000
+            - 8080:8080
             - 50000:50000
         image: myjenkins-blueocean:2.492.2-1
         build:
@@ -40,7 +40,7 @@ services:
     spring-api-backend:
         container_name: spring-api-backend
         ports:
-            - 8080:8080
+            - 9080:9080
         tty: true
         image: spring-api 
         build:
@@ -57,6 +57,8 @@ services:
         build:
             context: tax-management-system-frontend
             dockerfile: Dockerfile
+        depends_on:
+          - db
 
 networks:
     jenkins:
