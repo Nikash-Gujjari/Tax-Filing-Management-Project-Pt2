@@ -2,6 +2,8 @@
 # --detach
 name: tax-management-system
 services:
+
+    # My Jenkins Container
     myjenkins-blueocean:
         container_name: jenkins-blueocean
         restart: on-failure
@@ -18,6 +20,23 @@ services:
             - 8080:8080
             - 50000:50000
         image: myjenkins-blueocean:2.492.2-1
+        build:
+            context: .\jenkins
+            dockerfile: Dockerfile
+    
+    # My SQL Container
+    db:
+        container_name: sqldb
+        image: mysql
+        restart: always
+        ports: 
+            - 3306:3306
+        environment:
+            MYSQL_ROOT_PASSWORD: root
+        build:
+            context: .\tax-management-sytem-backend\tax-management-system-schema
+            dockerfile: Dockerfile
+
 networks:
     jenkins:
         external: true

@@ -5,14 +5,14 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.4.3</version>
+		<version>3.4.4</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.skillstorm</groupId>
-	<artifactId>tax-filing-management-system</artifactId>
+	<artifactId>tax-management-system-api</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>tax-filing-management-system</name>
-	<description>API for Tax Management System</description>
+	<name>tax-management-system-api</name>
+	<description>My Tax Filing Management System</description>
 	<url/>
 	<licenses>
 		<license/>

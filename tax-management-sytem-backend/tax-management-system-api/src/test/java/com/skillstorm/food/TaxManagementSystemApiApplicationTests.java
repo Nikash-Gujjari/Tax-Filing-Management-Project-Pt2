@@ -1,4 +1,4 @@
-package com.skillstorm.tax_management_system_api;
+package com.skillstorm.food;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
