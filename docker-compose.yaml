@@ -1,7 +1,24 @@
 name: tax-management-system
 services:
 
-    # My Jenkins Container
+    # Jenkins in Docker Container
+    docker:
+        container_name: jenkins-docker
+        privileged: true
+        networks:
+            bridge:
+                aliases:
+                    - docker
+        environment:
+            - DOCKER_TLS_CERTDIR=/certs
+        volumes:
+            - jenkins-docker-certs:/certs/client
+            - jenkins-data:/var/jenkins_home
+        ports:
+            - 2376:2376
+        image: docker:dind
+        command: --storage-driver overlay2
+    # My Jenkins BlueOcean Container
     myjenkins-blueocean:
         container_name: jenkins-blueocean
         restart: on-failure
@@ -15,7 +32,7 @@ services:
         ports:
             - 8080:8080
             - 50000:50000
-        image: myjenkins-blueocean:2.492.2-1
+        image:  myjenkins-blueocean:2.492.3-1
         build:
             context: .\jenkins
             dockerfile: Dockerfile
@@ -31,6 +48,7 @@ services:
             - 3306:3306
         environment:
             MYSQL_ROOT_PASSWORD: root
+            MYSQL_DATABASE: "tax filing management system"
         build:
             context: .\tax-management-sytem-backend\tax-management-system-schema
             dockerfile: Dockerfile
@@ -40,9 +58,9 @@ services:
     spring-api-backend:
         container_name: spring-api-backend
         environment:
-            SPRING_DATASOURCE_URL: jdbc:mysql://sqldb:3306/mydb
+            SPRING_DATASOURCE_URL: "jdbc:mysql://sqldb:3306/tax%20filing%20management%20system"
             SPRING_DATASOURCE_USERNAME: root
-            SPRING_DATASOURCE_PASSWORD: rootpass
+            SPRING_DATASOURCE_PASSWORD: root
         ports:
             - 9090:9090
         tty: true
