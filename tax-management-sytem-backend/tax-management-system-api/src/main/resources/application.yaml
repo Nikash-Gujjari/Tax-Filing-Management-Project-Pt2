@@ -8,7 +8,7 @@ spring:
   application:
     name: tax-filing-management-system
   datasource:
-    url: jdbc:mysql://localhost:3306/tax filing management system
+    url: jdbc:mysql://localhost:3306/tax%20filing%20management%20system
     username: root
     password: root
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -17,6 +17,6 @@ spring:
       ddl-auto: none
 
 server:
-  port: 9080
+  port: 9090
 
 base-url: localhost:9090/

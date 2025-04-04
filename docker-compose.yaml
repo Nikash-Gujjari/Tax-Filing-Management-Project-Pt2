@@ -40,7 +40,7 @@ services:
     spring-api-backend:
         container_name: spring-api-backend
         ports:
-            - 9080:9080
+            - 9090:9090
         tty: true
         image: 530789571735.dkr.ecr.us-east-1.amazonaws.com/ng-backend:spring_api 
         build:

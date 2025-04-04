@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    environment {
+
+    }
     stages{
         stage('build') {
             steps {
@@ -18,7 +21,7 @@ pipeline {
         }
         stage('deploy') {
             steps {
-                echo 'Deploying the Application'
+                withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: )])
             }
         }
     }
