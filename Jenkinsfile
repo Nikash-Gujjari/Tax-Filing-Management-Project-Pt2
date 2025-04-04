@@ -1,12 +1,19 @@
 pipeline {
     agent any
-    // environment {
-
-    // }
-    stages{
+     environment {
+        // Define Docker registry credentials and repository
+        DOCKER_REGISTRY = "your-docker-registry-url"
+        DOCKER_IMAGE = "your-image-name"
+        DOCKER_TAG = "latest"  // You can use a dynamic tag like commit hash or branch name
+    }
+        stage('Checkout Code') {
+            steps {
+                // Checkout the code from my Git repository
+                checkout scm
+            }
+        }
         stage('build') {
             steps {
-                // checkout scm
                 sh '''
                     echo "Building Application Stage"
                     echo "Building Database Docker Image"
