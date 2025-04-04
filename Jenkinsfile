@@ -3,8 +3,12 @@ pipeline {
     stages{
         stage('build') {
             steps {
-                echo 'Building Application'
-                echo 'Here'
+                checkout scm
+                sh '''
+                    echo "Building Application Stage"
+                    echo "Building Docker Image Files"
+                    docker compose build
+                '''
             }
         }
         stage('test') {

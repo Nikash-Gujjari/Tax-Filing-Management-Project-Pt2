@@ -27,7 +27,7 @@ services:
     # My SQL Container
     db:
         container_name: sqldb
-        image: mysql
+        image: 530789571735.dkr.ecr.us-east-1.amazonaws.com/ng-backend:mysql
         restart: always
         ports: 
             - 3306:3306
@@ -42,7 +42,7 @@ services:
         ports:
             - 9080:9080
         tty: true
-        image: spring-api 
+        image: 530789571735.dkr.ecr.us-east-1.amazonaws.com/ng-backend:spring_api 
         build:
             context: tax-management-sytem-backend\tax-management-system-api
             dockerfile: Dockerfile
@@ -53,7 +53,7 @@ services:
         container_name: react-frontend
         ports:
             - 3000:3000
-        image: react-frontend
+        image: 530789571735.dkr.ecr.us-east-1.amazonaws.com/ng-frontend:react_frontend
         build:
             context: tax-management-system-frontend
             dockerfile: Dockerfile
