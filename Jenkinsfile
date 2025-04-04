@@ -9,8 +9,13 @@ pipeline {
                 checkout scm
                 sh '''
                     echo "Building Application Stage"
-                    echo "Building Docker Image Files"
-                    docker compose build
+                    echo "Building Database Docker Image"
+                    docker compose build db
+                    echo "Building Spring API Docker Image"
+                    docker compose build spring-api-backend
+                    docker compose build spring-api-backend
+                    echo "Building React Frontend Docker Image"
+                    docker compose build react-frontend
                 '''
             }
         }
@@ -21,7 +26,8 @@ pipeline {
         }
         stage('deploy') {
             steps {
-                withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: )])
+                echo 'Deploying the Application'
+                // withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: )])
             }
         }
     }
