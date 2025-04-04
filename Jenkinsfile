@@ -15,7 +15,9 @@ pipeline {
         }
         stage('build') {
             steps {
-                docker.compose(composeFile: 'docker-compose.yaml').build('--no-cache')
+                sh '''
+                    docker compose build
+                '''
             }
         }
         stage('test') {
@@ -25,9 +27,11 @@ pipeline {
         }
         stage('deploy to AWS ECR') {
             steps {
-                docker.image("530789571735.dkr.ecr.us-east-1.amazonaws.com/ng-frontend:react_frontend").push()
-                docker.image("530789571735.dkr.ecr.us-east-1.amazonaws.com/ng-backend:spring_api").push()
-                docker.image("530789571735.dkr.ecr.us-east-1.amazonaws.com/ng-backend:mysql").push() 
+                sh '''
+                    docker push 530789571735.dkr.ecr.us-east-1.amazonaws.com/ng-frontend:react_frontend
+                    docker push 530789571735.dkr.ecr.us-east-1.amazonaws.com/ng-backend:spring_api
+                    docker push 530789571735.dkr.ecr.us-east-1.amazonaws.com/ng-backend:mysql
+                '''
             }
         }
     }
