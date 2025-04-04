@@ -1,5 +1,3 @@
-# Installing Jenkins using docker-compose.yaml
-# --detach
 name: tax-management-system
 services:
 
@@ -7,8 +5,6 @@ services:
     myjenkins-blueocean:
         container_name: jenkins-blueocean
         restart: on-failure
-        networks:
-            - jenkins
         environment:
             - DOCKER_HOST=tcp://docker:2376
             - DOCKER_CERT_PATH=/certs/client
@@ -23,6 +19,8 @@ services:
         build:
             context: .\jenkins
             dockerfile: Dockerfile
+        networks:
+          - bridge
     
     # My SQL Container
     db:
@@ -36,9 +34,15 @@ services:
         build:
             context: .\tax-management-sytem-backend\tax-management-system-schema
             dockerfile: Dockerfile
+        networks:
+          - bridge
     # My Spring API
     spring-api-backend:
         container_name: spring-api-backend
+        environment:
+            SPRING_DATASOURCE_URL: jdbc:mysql://sqldb:3306/mydb
+            SPRING_DATASOURCE_USERNAME: root
+            SPRING_DATASOURCE_PASSWORD: rootpass
         ports:
             - 9090:9090
         tty: true
@@ -48,6 +52,8 @@ services:
             dockerfile: Dockerfile
         depends_on:
           - db
+        networks:
+          - bridge
     # My Frontend React
     react-frontend:
         container_name: react-frontend
@@ -59,11 +65,12 @@ services:
             dockerfile: Dockerfile
         depends_on:
           - db
+        networks:
+          - bridge
 
 networks:
-    jenkins:
-        external: true
-        name: jenkins
+    bridge:
+        driver: bridge
 volumes:
     jenkins-data:
         external: true
