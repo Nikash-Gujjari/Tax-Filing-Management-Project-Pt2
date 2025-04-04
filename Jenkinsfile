@@ -6,7 +6,7 @@ pipeline {
     stages{
         stage('build') {
             steps {
-                checkout scm
+                // checkout scm
                 sh '''
                     echo "Building Application Stage"
                     echo "Building Database Docker Image"
